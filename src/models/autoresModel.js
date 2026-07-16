@@ -3,7 +3,9 @@ var database = require("../database/config");
 function listar() {
     
     var instrucaoSql = `
-        SELECT * FROM autor;
+        SELECT 
+            * 
+        FROM autor;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
