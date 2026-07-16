@@ -120,15 +120,21 @@
         var corpo = {
             nome: form_postagem.nome.value
         }
+
+         
         
 
-        for(let i = 0; i < corpo.length; i++){
-             if(corpo.nome[i] == "0" || corpo.nome[i] == "1" || corpo.nome[i] == "2" || corpo.nome[i] == "3" || corpo[i].nome == "4" || corpo[i].nome == "5" || corpo[i].nome == "6" || corpo[i].nome == "7" || corpo[i].nome == "8" || corpo[i].nome == "9"){
+        for(let i = 0; i < corpo.nome.length; i++){
+
+        
+           if(corpo.nome[i] == "1" || corpo.nome[i] == "2" || corpo.nome[i] == "3" || corpo.nome[i] == "4" || corpo.nome[i] == "5" || corpo.nome[i] == "6" || corpo.nome[i] == "7" || corpo.nome[i] == "8" || corpo.nome[i] == "9" || corpo.nome[i] == "0" || corpo.nome[i] == "!" || corpo.nome[i] == "@" || corpo.nome[i] == "#" || corpo.nome[i] == "$" || corpo.nome[i] == "%" || corpo.nome[i] == "¨" || corpo.nome[i] == "&" || corpo.nome[i] == "*" || corpo.nome[i] == "_" || corpo.nome[i] == "+" || corpo.nome[i] == "-" || corpo.nome[i] == "="){
                 alert("não pode ser um número")
                 limparFormulario()
                 return false
-            }
+                
+            }  
         }
+        
 
         fetch(`/autores/cadastrar`, {
             method: "post",
