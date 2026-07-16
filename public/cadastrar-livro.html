@@ -114,7 +114,11 @@
                                 <br>
                                 <input name="precoVenda" id="precoVenda" maxlength="20" type="Text"></input>
                             </label>
-
+                            <label>
+                                Quantidade em estoque:
+                                <br>
+                                <input name="qtdestoque" id="qtdestoque" maxlength="20" type="Text"></input>
+                            </label>
 
                             <button>Cadastrar</button>
                         </form>
@@ -146,20 +150,32 @@
             fkGenero: form_postagem.fkGenero_lista.value,
             fkAutor: form_postagem.fkAutor_lista.value,
             precoCompra: form_postagem.precoCompra.value,
-            precoVenda: form_postagem.precoVenda.value
+            precoVenda: form_postagem.precoVenda.value,
+            qtdestoque: form_postagem.qtdestoque.value
         }
-        if((corpo.fkGenero == "horror" || corpo.fkGenero == "romance") && corpo.precoCompra >= 100  ){
-            corpo.precoVenda = corpo.precoCompra * 0.22
+
+        if((corpo.fkGenero == 2 || corpo.fkGenero == 4) && corpo.precoCompra >= 100  ){
+           let calculo = corpo.precoCompra * 0.22
+            let total = corpo.precoCompra + calculo
+            corpo.precoCompra = total
         }
-        else if((corpo.fkGenero == "horror" || corpo.fkGenero == "poesia") && corpo.precoCompra <= 50){
-            corpo.precoVenda = corpo.precoCompra * 0.25
-        }
-        else if(corpo.fkGenero == "fantasia" && (corpo.precoCompra > 50 && corpo.precoCompra < 100)){
-            corpo.precoVenda = corpo.precoCompra * 0.27
-        }
-        else{
+        else if((corpo.fkGenero == 2 || corpo.fkGenero == 3) && corpo.precoCompra <= 50){
+          let calculo = corpo.precoCompra * 0.25
+            let total = corpo.precoCompra + calculo
+                        corpo.precoCompra = total
 
         }
+        else if(corpo.fkGenero == 5 && (corpo.precoCompra > 50 && corpo.precoCompra < 100)){
+            let calculo = corpo.precoCompra * 0.27
+            let total = corpo.precoCompra + calculo 
+                        corpo.precoCompra = total
+
+        }
+        else{
+          corpo.precoCompra = corpo.precoVenda
+        }
+    
+    
         fetch(`/livros/cadastrar`, {
             method: "post",
             headers: {
@@ -186,8 +202,8 @@
         });
 
         return false;
-
     }
+    
 
 
     function listarParaDropbown() {
